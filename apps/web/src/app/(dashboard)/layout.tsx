@@ -1,9 +1,21 @@
+"use client";
+
 import { ReactNode } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Briefcase, LayoutDashboard, FileText, Building, LogOut } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { useAuthStore } from "@/lib/store";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Sidebar */}
@@ -29,7 +41,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </Link>
         </nav>
         <div className="p-4 border-t border-border flex items-center justify-between">
-          <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <LogOut size={18} /> Sair
           </button>
           <ThemeSwitcher />
