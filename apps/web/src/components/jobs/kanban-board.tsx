@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   DndContext, 
   DragOverlay, 
@@ -13,6 +13,8 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { KanbanColumn } from "./kanban-column";
 import { KanbanCard } from "./kanban-card";
+import { api } from "@/lib/api";
+import { Loader2 } from "lucide-react";
 
 export type JobStatus = "BACKLOG" | "APPLIED" | "INTERVIEW" | "OFFER" | "REJECTED";
 
@@ -23,12 +25,6 @@ export interface JobCard {
   status: JobStatus;
 }
 
-const initialCards: JobCard[] = [
-  { id: "1", title: "Frontend Developer", company: "Google", status: "BACKLOG" },
-  { id: "2", title: "Fullstack Engineer", company: "Microsoft", status: "APPLIED" },
-  { id: "3", title: "React Developer", company: "Amazon", status: "INTERVIEW" },
-];
-
 const columns: { id: JobStatus; title: string; color: string }[] = [
   { id: "BACKLOG", title: "Salvas", color: "bg-slate-500/10 text-slate-600 dark:text-slate-400" },
   { id: "APPLIED", title: "Aplicadas", color: "bg-blue-500/10 text-blue-600 dark:text-blue-400" },
@@ -37,9 +33,31 @@ const columns: { id: JobStatus; title: string; color: string }[] = [
   { id: "REJECTED", title: "Rejeitado", color: "bg-red-500/10 text-red-600 dark:text-red-400" },
 ];
 
-export function KanbanBoard() {
-  const [cards, setCards] = useState<JobCard[]>(initialCards);
+interface KanbanBoardProps {
+  refreshTrigger?: number;
+}
+
+export function KanbanBoard({ refreshTrigger = 0 }: KanbanBoardProps) {
+  const [cards, setCards] = useState<JobCard[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadJobs() {
+      try {
+        const res = await api.get("/jobs");
+        if (res.ok) {
+          const json = await res.json();
+          setCards(json.data || []);
+        }
+      } catch (err) {
+        console.error("Failed to load jobs", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadJobs();
+  }, [refreshTrigger]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -50,7 +68,7 @@ export function KanbanBoard() {
     setActiveId(event.active.id);
   }
 
-  function handleDragOver(event: any) {
+  async function handleDragOver(event: any) {
     const { active, over } = event;
     if (!over) return;
     
@@ -86,11 +104,32 @@ export function KanbanBoard() {
     }
   }
 
-  function handleDragEnd() {
+  async function handleDragEnd(event: any) {
+    const { active, over } = event;
     setActiveId(null);
+    
+    if (!over) return;
+    
+    // Save to backend
+    const card = cards.find(c => c.id === active.id);
+    if (card) {
+      try {
+        await api.patch(`/jobs/${card.id}`, { status: card.status });
+      } catch (err) {
+        console.error("Failed to update status", err);
+      }
+    }
   }
 
   const activeCard = cards.find((c) => c.id === activeId);
+
+  if (loading) {
+    return (
+      <div className="h-full flex items-center justify-center text-muted-foreground">
+        <Loader2 className="animate-spin w-8 h-8" />
+      </div>
+    );
+  }
 
   return (
     <DndContext 
