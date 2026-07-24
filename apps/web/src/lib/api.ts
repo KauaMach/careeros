@@ -57,4 +57,12 @@ export const api = {
   async delete(endpoint: string, options?: FetchOptions) {
     return this.fetch(endpoint, { method: "DELETE", ...options });
   },
+
+  async patch(endpoint: string, body: any, options?: FetchOptions) {
+    return this.fetch(endpoint, {
+      method: "PATCH",
+      body: JSON.stringify(body),
+      ...options,
+    });
+  },
 };
