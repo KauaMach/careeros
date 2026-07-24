@@ -49,7 +49,7 @@ export default function LoginPage() {
       }
 
       const data = await res.json();
-      setToken(data.access_token);
+      setToken(data.data.access_token);
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.message);
