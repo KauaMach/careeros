@@ -10,6 +10,7 @@ from app.database import Base
 # Import all models to ensure they are registered with Base.metadata
 from app.modules.auth.models import User
 from app.modules.jobs.models import Job
+from app.modules.resumes.models import Resume
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

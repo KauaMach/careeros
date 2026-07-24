@@ -37,18 +37,18 @@ export default function Home() {
           <Sparkles className="mr-2 h-4 w-4" />
           <span className="animate-pulse">A Inteligência Artificial para a sua carreira</span>
         </div>
-        
+
         <h1 className="max-w-4xl text-5xl font-extrabold tracking-tight sm:text-7xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/80 to-foreground/60 animate-in slide-in-from-bottom-4 duration-700">
           Gerencie vagas, currículos e <span className="text-primary">conquiste o futuro</span>.
         </h1>
-        
+
         <p className="max-w-2xl text-lg sm:text-xl text-muted-foreground mb-10 animate-in slide-in-from-bottom-6 duration-700 delay-150">
           O CareerOS centraliza suas aplicações, otimiza seus currículos para ATS e acompanha seu progresso nas entrevistas. O sistema operacional definitivo para a sua jornada profissional.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 animate-in slide-in-from-bottom-8 duration-700 delay-300">
           <a href="/register" className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:scale-105 hover:bg-primary/90 active:scale-95">
-            Começar Gratuitamente
+            Começar
             <ArrowRight className="ml-2 h-5 w-5" />
           </a>
           <a href="#features" className="inline-flex h-12 items-center justify-center rounded-full border border-input bg-background/50 backdrop-blur-sm px-8 text-base font-medium shadow-sm transition-all hover:bg-accent hover:text-accent-foreground active:scale-95">
