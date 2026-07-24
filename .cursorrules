@@ -7,8 +7,8 @@
 - Utilize o padrão Conventional Commits (feat, fix, docs, style, refactor, test, chore).
 
 ## Documentação & Contexto (IMPORTANTE PARA IAs)
-Sempre que iniciar uma nova tarefa ou sessão, consulte os seguintes arquivos na raiz:
-1. `PROJECT.md` -> Se precisar entender a Regra de Negócio, o Produto ou o Roadmap.
-2. `ARCHITECTURE.md` -> Se precisar de schemas do banco, stack ou arquitetura.
+Sempre que iniciar uma nova tarefa ou sessão, consulte os seguintes arquivos:
+1. `docs/PROJECT.md` -> Se precisar entender a Regra de Negócio, o Produto ou o Roadmap.
+2. `docs/ARCHITECTURE.md` -> Se precisar de schemas do banco, stack ou arquitetura.
 3. `.ai/TASKS_LOG.md` -> Se quiser saber o que foi feito na última sessão e qual o próximo passo imediato. Atualize este arquivo sempre que finalizar uma feature importante.
 4. `.ai/AGENTS.md` -> Procedimentos Operacionais Padrão (SOPs) de como escrever código no projeto.
