@@ -32,7 +32,8 @@ class AuthService:
             raise UnauthorizedException("Invalid credentials")
 
         access_token = JWTHandler.create_access_token(subject=user.id)
-        return TokenResponse(access_token=access_token)
+        refresh_token = JWTHandler.create_refresh_token(subject=user.id)
+        return TokenResponse(access_token=access_token), refresh_token
 
     async def get_me(self, user_id: uuid.UUID) -> UserResponse:
         user = await self.repository.get_by_id(user_id)

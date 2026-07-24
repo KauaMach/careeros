@@ -27,6 +27,13 @@ class JWTHandler:
         return encoded_jwt
         
     @staticmethod
+    def create_refresh_token(subject: str | int) -> str:
+        expire = datetime.now(timezone.utc) + timedelta(days=settings.JWT_REFRESH_TOKEN_EXPIRE_DAYS)
+        to_encode = {"exp": expire, "sub": str(subject), "type": "refresh"}
+        encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
+        return encoded_jwt
+        
+    @staticmethod
     def decode_access_token(token: str) -> dict | None:
         try:
             payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])

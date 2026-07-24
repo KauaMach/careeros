@@ -161,15 +161,15 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 | Variáveis de Ambiente | ✅ | | | Crítica |
 | Clean Architecture | ✅ | | | Alta |
 | Migrações do DB | ✅ | | | Crítica |
-| Sessão (JWT & Rotação) | | ⚠️ | | Alta |
-| CORS | | ⚠️ | | Alta |
+| Sessão (JWT & Rotação) | ✅ | | | Alta |
+| CORS | ✅ | | | Alta |
 | Paginação e Índices | | ⚠️ | | Alta |
 | Linters & Formatação | | ⚠️ | | Média |
-| Rate Limiting | | | ❌ | Alta |
-| HTTPS / HSTS | | | ❌ | Crítica |
+| Rate Limiting | ✅ | | | Alta |
+| HTTPS / HSTS | ✅ | | | Crítica |
 | Testes Automatizados | | | ❌ | Crítica |
-| CI/CD & Scan | | | ❌ | Alta |
-| Criptografia no DB (Keys)| | | ❌ | Crítica |
+| CI/CD & Scan | ✅ | | | Alta |
+| Criptografia no DB (Keys)| ✅ | | | Crítica |
 
 ---
 
@@ -181,9 +181,9 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 - [x] Configurar HTTPS no servidor de deploy.
 
 ### 2. Correções de alta prioridade
-- [ ] Implementar Refresh Tokens em cookies HttpOnly (segurança JWT).
-- [ ] Criar CI/CD no GitHub Actions para garantir que o projeto não quebre.
-- [ ] Implementar Rate Limiting nas rotas críticas (Login, Geração via IA).
+- [x] Implementar Refresh Tokens em cookies HttpOnly (segurança JWT).
+- [x] Criar CI/CD no GitHub Actions para garantir que o projeto não quebre.
+- [x] Implementar Rate Limiting nas rotas críticas (Login, Geração via IA).
 
 ### 3. Melhorias de testes
 - [ ] Configurar `pytest` no Backend.
