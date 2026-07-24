@@ -20,6 +20,9 @@ app = FastAPI(
     title="CareerOS API",
     description="API for CareerOS platform",
     version="1.0.0",
+    lifespan=lifespan
+)
+
 from app.core.config import settings
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded

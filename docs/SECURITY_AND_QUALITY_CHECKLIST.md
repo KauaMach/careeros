@@ -167,7 +167,7 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 | Linters & Formatação | | ⚠️ | | Média |
 | Rate Limiting | ✅ | | | Alta |
 | HTTPS / HSTS | ✅ | | | Crítica |
-| Testes Automatizados | | | ❌ | Crítica |
+| Testes Automatizados | ✅ | | | Crítica |
 | CI/CD & Scan | ✅ | | | Alta |
 | Criptografia no DB (Keys)| ✅ | | | Crítica |
 
@@ -186,9 +186,9 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 - [x] Implementar Rate Limiting nas rotas críticas (Login, Geração via IA).
 
 ### 3. Melhorias de testes
-- [ ] Configurar `pytest` no Backend.
-- [ ] Escrever testes unitários para a classe `AuthService` e geração de IA.
-- [ ] Configurar `Vitest` no Frontend.
+- [x] Configurar `pytest` no Backend.
+- [x] Escrever testes unitários para a classe `AuthService` e geração de IA.
+- [x] Configurar `Vitest` no Frontend.
 
 ### 4. Melhorias arquiteturais e performance
 - [ ] Adicionar parâmetros `skip` e `limit` em todas as rotas de `GET` (Paginação).
