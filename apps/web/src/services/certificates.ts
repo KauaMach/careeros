@@ -1,4 +1,4 @@
-import api from './api';
+import { api } from '@/lib/api';
 
 export interface Certificate {
   id: string;
@@ -25,22 +25,29 @@ export interface CreateCertificateData {
 export const certificatesService = {
   async getCertificates(): Promise<Certificate[]> {
     const response = await api.get('/certificates');
-    return response.data.data;
+    const json = await response.json();
+    return json.data;
   },
 
   async getCertificate(id: string): Promise<Certificate> {
     const response = await api.get(`/certificates/${id}`);
-    return response.data.data;
+    const json = await response.json();
+    return json.data;
   },
 
   async createCertificate(data: CreateCertificateData): Promise<Certificate> {
     const response = await api.post('/certificates', data);
-    return response.data.data;
+    const json = await response.json();
+    return json.data;
   },
 
   async updateCertificate(id: string, data: Partial<CreateCertificateData>): Promise<Certificate> {
-    const response = await api.patch(`/certificates/${id}`, data);
-    return response.data.data;
+    const response = await api.fetch(`/certificates/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data)
+    });
+    const json = await response.json();
+    return json.data;
   },
 
   async deleteCertificate(id: string): Promise<void> {
