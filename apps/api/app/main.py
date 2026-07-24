@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.modules.auth.router import router as auth_router
 from app.modules.jobs.router import router as jobs_router
 from app.modules.resumes.router import router as resumes_router
+from app.modules.companies.router import router as companies_router
+from app.modules.certificates.router import router as certificates_router
 from app.core.exceptions import AppException
 from app.core.response import ApiResponse
 from contextlib import asynccontextmanager
@@ -45,6 +47,8 @@ api_router = APIRouter(prefix="/api/v1")
 api_router.include_router(auth_router)
 api_router.include_router(jobs_router)
 api_router.include_router(resumes_router)
+api_router.include_router(companies_router)
+api_router.include_router(certificates_router)
 app.include_router(api_router)
 
 @app.get("/health")

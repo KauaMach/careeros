@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Briefcase, LayoutDashboard, FileText, Building, LogOut } from "lucide-react";
+import { Briefcase, LayoutDashboard, FileText, Building, Award, LogOut } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { useAuthStore } from "@/lib/store";
 
@@ -38,6 +38,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </Link>
           <Link href="/companies" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors">
             <Building size={20} /> Empresas
+          </Link>
+          <Link href="/certificates" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors">
+            <Award size={20} /> Certificados
           </Link>
         </nav>
         <div className="p-4 border-t border-border flex items-center justify-between">

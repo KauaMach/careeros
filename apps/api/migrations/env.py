@@ -11,6 +11,8 @@ from app.database import Base
 from app.modules.auth.models import User
 from app.modules.jobs.models import Job
 from app.modules.resumes.models import Resume
+from app.modules.companies.models import Company
+from app.modules.certificates.models import Certificate
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
