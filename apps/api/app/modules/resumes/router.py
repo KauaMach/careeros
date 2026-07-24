@@ -1,13 +1,22 @@
 from fastapi import APIRouter, Depends, status
-from app.modules.resumes.schemas import ResumeCreate, ResumeUpdate, ResumeResponse
+from app.modules.resumes.schemas import ResumeCreate, ResumeUpdate, ResumeResponse, EnhanceTextRequest, EnhanceTextResponse
 from app.modules.resumes.service import ResumeService
 from app.modules.resumes.deps import get_resume_service
 from app.core.response import ApiResponse
 from app.modules.auth.models import User
 from app.modules.auth.deps import get_current_user
+from app.core.ai import enhance_resume_text
 import uuid
 
 router = APIRouter(prefix="/resumes", tags=["resumes"])
+
+@router.post("/enhance", response_model=ApiResponse[EnhanceTextResponse])
+async def enhance_text(
+    request: EnhanceTextRequest,
+    current_user: User = Depends(get_current_user)
+):
+    improved_text = await enhance_resume_text(request.text, request.role, request.company)
+    return ApiResponse(data=EnhanceTextResponse(improved_text=improved_text), message="Texto melhorado com sucesso")
 
 @router.post("", response_model=ApiResponse[ResumeResponse], status_code=status.HTTP_201_CREATED)
 async def create_resume(

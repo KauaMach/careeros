@@ -21,3 +21,11 @@ class ResumeResponse(ResumeBase):
 
     class Config:
         from_attributes = True
+
+class EnhanceTextRequest(BaseModel):
+    text: str
+    role: Optional[str] = None
+    company: Optional[str] = None
+
+class EnhanceTextResponse(BaseModel):
+    improved_text: str

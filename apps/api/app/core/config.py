@@ -20,7 +20,8 @@ class Settings(BaseSettings):
     MINIO_SECRET_KEY: str = "minioadmin"
     MINIO_BUCKET_NAME: str = "careeros"
     
-    # AI Fallback
+    # AI
+    GEMINI_API_KEY: str | None = None
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     AI_MODEL: str = "llama3"
     
