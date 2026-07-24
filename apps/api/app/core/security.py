@@ -33,3 +33,30 @@ class JWTHandler:
             return payload
         except JWTError:
             return None
+
+import hashlib
+import base64
+from cryptography.fernet import Fernet
+
+class EncryptionHandler:
+    @staticmethod
+    def get_fernet() -> Fernet:
+        key = settings.ENCRYPTION_KEY.encode('utf-8')
+        if len(key) != 44:
+            digest = hashlib.sha256(key).digest()
+            key = base64.urlsafe_b64encode(digest)
+        return Fernet(key)
+
+    @staticmethod
+    def encrypt(text: str) -> str:
+        if not text:
+            return text
+        f = EncryptionHandler.get_fernet()
+        return f.encrypt(text.encode('utf-8')).decode('utf-8')
+
+    @staticmethod
+    def decrypt(cipher_text: str) -> str:
+        if not cipher_text:
+            return cipher_text
+        f = EncryptionHandler.get_fernet()
+        return f.decrypt(cipher_text.encode('utf-8')).decode('utf-8')

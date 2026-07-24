@@ -176,9 +176,9 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 ## Plano de Ação (Roadmap de Qualidade)
 
 ### 1. Correções críticas imediatas
-- [ ] Implementar criptografia reversível (Fernet) para as chaves de API do usuário (`GEMINI_API_KEY`).
-- [ ] Ajustar as políticas de CORS para produção.
-- [ ] Configurar HTTPS no servidor de deploy.
+- [x] Implementar criptografia reversível (Fernet) para as chaves de API do usuário (`GEMINI_API_KEY`).
+- [x] Ajustar as políticas de CORS para produção.
+- [x] Configurar HTTPS no servidor de deploy.
 
 ### 2. Correções de alta prioridade
 - [ ] Implementar Refresh Tokens em cookies HttpOnly (segurança JWT).

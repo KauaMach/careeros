@@ -1,0 +1,23 @@
+{$DOMAIN:localhost} {
+    # Compressão nativa para melhor performance
+    encode gzip zstd
+
+    # Header Security Hardening
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    # Proxy para a API (Backend)
+    handle /api/* {
+        reverse_proxy api:8000
+    }
+
+    # Proxy para o Frontend (Next.js)
+    handle /* {
+        reverse_proxy web:3000
+    }
+}

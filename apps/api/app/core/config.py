@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     # URLs
     DATABASE_URL: str
     REDIS_URL: str
+    FRONTEND_URL: str = "http://localhost:3000"
     
     # Auth
     JWT_SECRET_KEY: str
