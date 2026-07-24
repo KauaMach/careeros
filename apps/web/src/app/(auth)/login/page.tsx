@@ -42,7 +42,15 @@ export default function LoginPage() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.detail || "Falha ao realizar login");
+        let errorMsg = "Falha ao realizar login";
+        if (typeof data.detail === 'string') {
+          errorMsg = data.detail;
+        } else if (Array.isArray(data.detail)) {
+          errorMsg = data.detail.map((err: any) => err.msg).join(", ");
+        } else if (data.message) {
+          errorMsg = data.message;
+        }
+        throw new Error(errorMsg);
       }
 
       const data = await res.json();
