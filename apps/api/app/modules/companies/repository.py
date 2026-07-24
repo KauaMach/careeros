@@ -19,7 +19,7 @@ class CompanyRepository:
         result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    async def list_by_user(self, user_id: uuid.UUID) -> List[Company]:
+    async def list_by_user(self, user_id: uuid.UUID, skip: int = 0, limit: int = 100) -> List[Company]:
         query = select(Company).where(Company.user_id == user_id).order_by(Company.created_at.desc())
         result = await self.session.execute(query)
         return list(result.scalars().all())

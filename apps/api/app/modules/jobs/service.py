@@ -33,7 +33,7 @@ class JobService:
         return JobResponse.model_validate(job)
 
     async def list_jobs(self, user_id: uuid.UUID) -> list[JobResponse]:
-        jobs = await self.repository.list_by_user(user_id)
+        jobs = await self.repository.list_by_user(user_id, skip=skip, limit=limit)
         return [JobResponse.model_validate(job) for job in jobs]
 
     async def update_job(self, job_id: uuid.UUID, user_id: uuid.UUID, data: JobUpdate) -> JobResponse:

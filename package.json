@@ -1,0 +1,39 @@
+{
+  "name": "central-de-carreira",
+  "version": "1.0.0",
+  "description": "O **CareerOS** é o sistema operacional definitivo para a gestão da sua carreira. Muito mais do que um simples organizador de vagas, é uma plataforma inteligente e centralizada projetada para profissionais que desejam assumir o controle do seu desenvolvimento.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KauaMach/careeros.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KauaMach/careeros/issues"
+  },
+  "homepage": "https://github.com/KauaMach/careeros#readme",
+  "lint-staged": {
+    "apps/api/**/*.py": [
+      "npx ruff check --fix",
+      "npx ruff format"
+    ],
+    "apps/web/**/*.{js,jsx,ts,tsx,css,json}": [
+      "npx prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.2.0",
+    "prettier": "^3.9.6",
+    "ruff": "^1.5.4"
+  }
+}

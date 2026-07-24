@@ -8,6 +8,7 @@ from app.modules.companies.router import router as companies_router
 from app.modules.certificates.router import router as certificates_router
 from app.core.exceptions import AppException
 from app.core.response import ApiResponse
+import os
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
@@ -16,10 +17,15 @@ async def lifespan(app: FastAPI):
     yield
     # teardown
 
+env = os.environ.get("ENVIRONMENT", "development")
+
 app = FastAPI(
     title="CareerOS API",
     description="API for CareerOS platform",
     version="1.0.0",
+    docs_url="/api/docs" if env != "production" else None,
+    redoc_url="/api/redoc" if env != "production" else None,
+    openapi_url="/api/openapi.json" if env != "production" else None,
     lifespan=lifespan
 )
 

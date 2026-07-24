@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import Query, APIRouter, Depends, status
 from app.modules.jobs.schemas import JobCreate, JobUpdate, JobResponse
 from app.modules.jobs.service import JobService
 from app.modules.jobs.deps import get_job_service

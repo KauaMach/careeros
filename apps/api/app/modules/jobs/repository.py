@@ -19,7 +19,7 @@ class JobRepository:
         )
         return result.scalars().first()
 
-    async def list_by_user(self, user_id: uuid.UUID) -> list[Job]:
+    async def list_by_user(self, user_id: uuid.UUID, skip: int = 0, limit: int = 100) -> list[Job]:
         result = await self.session.execute(
             select(Job).where(Job.user_id == user_id).order_by(Job.created_at.desc())
         )

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import Query, APIRouter, Depends, status
 from app.core.response import ApiResponse
 from app.modules.auth.models import User
 from app.modules.auth.deps import get_current_user
@@ -24,7 +24,7 @@ async def list_all(
     current_user: User = Depends(get_current_user),
     service: CompanyService = Depends(get_company_service)
 ):
-    items = await service.list_all(current_user.id)
+    items = await service.list_all(current_user.id, skip=skip, limit=limit)
     return ApiResponse(data=items)
 
 @router.get("/{item_id}", response_model=ApiResponse[CompanyResponse])

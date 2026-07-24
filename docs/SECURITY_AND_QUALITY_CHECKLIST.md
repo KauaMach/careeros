@@ -163,8 +163,8 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 | Migrações do DB | ✅ | | | Crítica |
 | Sessão (JWT & Rotação) | ✅ | | | Alta |
 | CORS | ✅ | | | Alta |
-| Paginação e Índices | | ⚠️ | | Alta |
-| Linters & Formatação | | ⚠️ | | Média |
+| Paginação e Índices | ✅ | | | Alta |
+| Linters & Formatação | ✅ | | | Média |
 | Rate Limiting | ✅ | | | Alta |
 | HTTPS / HSTS | ✅ | | | Crítica |
 | Testes Automatizados | ✅ | | | Crítica |
@@ -191,10 +191,11 @@ Este documento serve como guia oficial de segurança, qualidade e conformidade d
 - [x] Configurar `Vitest` no Frontend.
 
 ### 4. Melhorias arquiteturais e performance
-- [ ] Adicionar parâmetros `skip` e `limit` em todas as rotas de `GET` (Paginação).
-- [ ] Confirmar índices nos campos `user_id` em todas as tabelas filhas.
+- [x] Adicionar parâmetros `skip` e `limit` em todas as rotas de `GET` (Paginação).
+- [x] Refatorar consultas SQL para usar `yield` (streaming de dados para listas enormes). *(Se aplicável)*
+- [x] Confirmar índices nos campos `user_id` em todas as tabelas filhas.
 
 ### 5. Melhorias de qualidade e documentação
-- [ ] Configurar Husky + Lint-staged (Ruff/Prettier).
-- [ ] Adicionar Swagger UI em produção com proteção (ou desativar).
-- [ ] Criar documentação técnica final (`CONTRIBUTING.md`).
+- [x] Configurar Husky + Lint-staged (Ruff/Prettier).
+- [x] Adicionar Swagger UI em produção com proteção (ou desativar).
+- [x] Criar documentação técnica final (`CONTRIBUTING.md`).

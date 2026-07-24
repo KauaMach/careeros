@@ -19,7 +19,7 @@ class CertificateRepository:
         result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    async def list_by_user(self, user_id: uuid.UUID) -> List[Certificate]:
+    async def list_by_user(self, user_id: uuid.UUID, skip: int = 0, limit: int = 100) -> List[Certificate]:
         query = select(Certificate).where(Certificate.user_id == user_id).order_by(Certificate.created_at.desc())
         result = await self.session.execute(query)
         return list(result.scalars().all())

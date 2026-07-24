@@ -14,8 +14,8 @@ class CompanyService:
         created = await self.repository.create(item)
         return CompanyResponse.model_validate(created)
 
-    async def list_all(self, user_id: uuid.UUID) -> List[CompanyResponse]:
-        items = await self.repository.list_by_user(user_id)
+    async def list_all(self, user_id: uuid.UUID, skip: int = 0, limit: int = 100) -> List[CompanyResponse]:
+        items = await self.repository.list_by_user(user_id, skip=skip, limit=limit)
         return [CompanyResponse.model_validate(item) for item in items]
 
     async def get(self, item_id: uuid.UUID, user_id: uuid.UUID) -> CompanyResponse:

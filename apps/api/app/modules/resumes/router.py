@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import Query, APIRouter, Depends, status
 from app.modules.resumes.schemas import ResumeCreate, ResumeUpdate, ResumeResponse, EnhanceTextRequest, EnhanceTextResponse
 from app.modules.resumes.service import ResumeService
 from app.modules.resumes.deps import get_resume_service
